@@ -72,6 +72,12 @@ const Dashboard = () => {
           },
         },
       ],
+      dataLabels: {
+        style: {
+          fontSize: '1rem',
+        },
+      },
+
 
     };
 

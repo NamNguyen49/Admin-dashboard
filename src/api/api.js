@@ -2,7 +2,7 @@ import axios from "axios";
 import refresh from "./refresh";
 import { toast } from "react-toastify";
 
-const url = "https://genzstyle.azurewebsites.net";
+const url = "https://genzstyleapp.azurewebsites.net";
 const instance = axios.create({
     baseURL: url,
     headers: {
@@ -48,7 +48,7 @@ instance.interceptors.response.use(
                     user.accessToken = accessToken;
                     user.refreshToken = refreshToken;
                     localStorage.setItem("user", JSON.stringify(user));
-                    
+
                     return instance(originalConfig);
                 } catch (_error) {
                     return Promise.reject(_error);

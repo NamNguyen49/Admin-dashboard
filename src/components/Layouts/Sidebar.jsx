@@ -125,8 +125,8 @@ const Sidebar = () => {
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  Genz Fashion
+                <Typography variant="h2" color={colors.grey[100]}>
+                  GenZStyle
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -140,8 +140,8 @@ const Sidebar = () => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="110px"
+                  width="120px"
+                  height="120px"
                   src={`../../back.png`}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
