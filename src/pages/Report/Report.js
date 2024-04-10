@@ -124,7 +124,7 @@ const Report = () => {
                 }}
               >
                 <MenuItem onClick={() => handleUpdateOrder("inactive")}>
-                  Đồng ý
+                  Chấp nhận
                 </MenuItem>
                 <MenuItem onClick={() => handleUpdateOrder("reject")}>
                   Từ chối

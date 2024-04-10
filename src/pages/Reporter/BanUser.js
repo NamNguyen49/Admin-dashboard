@@ -130,7 +130,7 @@ const BanUser = () => {
                 }}
               >
                 <MenuItem onClick={() => handleUpdateOrder("inactive")}>
-                  Đồng ý
+                  Chấp nhận
                 </MenuItem>
                 <MenuItem onClick={() => handleUpdateOrder("active")}>
                   Từ chối

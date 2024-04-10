@@ -71,7 +71,18 @@ const AddPackage = () => {
                 {({ field, meta }) => (
                   <TextField
                     {...field}
-                    label="Tên gói"
+                    label={
+                      <Typography
+                        sx={{
+                          fontSize: "24px",
+                          marginTop: "-8px",
+
+
+                        }}
+                      >
+                        Tên Gói
+                      </Typography>
+                    }
                     fullWidth
                     error={meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error ? meta.error : ""}
@@ -83,12 +94,12 @@ const AddPackage = () => {
                 {({ field, meta, form }) => (
                   <div
                     style={{
-                      marginBottom: "16px",
+                      marginBottom: "22px",
                       display: "flex",
                       flexDirection: "column",
                     }}
                   >
-                    <label style={{ marginBottom: "8px" }}>Nội dung</label>
+                    <label style={{ marginBottom: "8px", fontSize: "24px", }}>Nội dung</label>
                     <ReactQuill
                       style={{ height: "150px", marginBottom: "16px" }}
                       theme="snow"
@@ -112,12 +123,22 @@ const AddPackage = () => {
                 {({ field, meta }) => (
                   <TextField
                     {...field}
-                    label="Giá"
+                    label={
+                      <Typography
+                        sx={{
+                          fontSize: "24px",
+                          marginTop: "-8px",
+
+                        }}
+                      >
+                        Giá tiền (VND)
+                      </Typography>
+                    }
                     fullWidth
                     type="number"
                     error={meta.touched && !!meta.error}
                     helperText={meta.touched && meta.error ? meta.error : ""}
-                    sx={{ mb: 2, marginTop: "26px" }}
+                    sx={{ mb: 2, marginTop: "26px", fontSize: "24px" }}
                   />
                 )}
               </Field>
@@ -149,6 +170,8 @@ const AddPackage = () => {
                     </>
                   )}
                 </Field>
+
+
               </Box>
               <ErrorMessage
                 name="Image"

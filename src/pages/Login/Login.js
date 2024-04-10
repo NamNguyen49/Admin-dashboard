@@ -125,18 +125,26 @@ export default function Login({ setIsLogin }) {
           </Typography>
           <form onSubmit={formik.handleSubmit}>
             <Box sx={{ mt: 1 }}>
+
               <TextField
                 margin="normal"
                 fullWidth
                 id="userName"
-                label="Tên Đăng Nhập"
+                label={
+                  <Typography
+                    sx={{
+                      fontSize: "22px",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Tên Đăng Nhập
+                  </Typography>
+                }
                 name="userName"
                 value={formik.values.userName}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={
-                  formik.touched.userName && Boolean(formik.errors.userName)
-                }
+                error={formik.touched.userName && Boolean(formik.errors.userName)}
                 helperText={formik.touched.userName && formik.errors.userName}
                 InputProps={{
                   endAdornment: (
@@ -146,23 +154,29 @@ export default function Login({ setIsLogin }) {
                   ),
                 }}
               />
+
+
               <TextField
                 margin="normal"
                 fullWidth
-                name="passwordHash"
-                label="Mật khẩu"
-                type="password"
                 id="passwordHash"
+                label={
+                  <Typography
+                    sx={{
+                      fontSize: "22px",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    Mật khẩu
+                  </Typography>
+                }
+                name="passwordHash"
+                type="password"
                 value={formik.values.passwordHash}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                error={
-                  formik.touched.passwordHash &&
-                  Boolean(formik.errors.passwordHash)
-                }
-                helperText={
-                  formik.touched.passwordHash && formik.errors.passwordHash
-                }
+                error={formik.touched.passwordHash && Boolean(formik.errors.passwordHash)}
+                helperText={formik.touched.passwordHash && formik.errors.passwordHash}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -171,10 +185,8 @@ export default function Login({ setIsLogin }) {
                   ),
                 }}
               />
-              {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
+
+
               <Button
                 type="submit"
                 fullWidth
@@ -192,19 +204,7 @@ export default function Login({ setIsLogin }) {
                 Đăng nhập
               </Button>
 
-              {/* <Grid>
-                <Grid item>
-                  <Link to="/forgotPassword" variant="body2" style={{color: "#0033FF"}}>
-                    {"Quên mật khẩu ?"}
-                  </Link>
-                </Grid>
-             
-                <Grid item>
-                  <Link to="/register" variant="body2" style={{color: "#0033FF"}}>
-                    {"Bạn chưa có tài khoản ?"}
-                  </Link>
-                </Grid>
-                </Grid> */}
+
             </Box>
           </form>
         </Box>

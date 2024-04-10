@@ -151,7 +151,7 @@ const Dashboard = () => {
         >
           <StatBox
             title={totalInvoice}
-            subtitle="Tổng số đơn hàng"
+            subtitle="Tổng số tiền đã thanh toán "
             progress="0.30"
             increase="+5%"
             icon={<PaidOutlinedIcon sx={{ color: "red", fontSize: "32px" }} />}

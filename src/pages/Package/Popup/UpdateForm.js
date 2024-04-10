@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Box, Typography } from "@mui/material";
 import * as Yup from "yup";
 import ReactQuill from "react-quill";
 
@@ -37,7 +37,18 @@ const UpdateForm = ({ initialValues, onSubmit }) => {
             {({ field, meta }) => (
               <TextField
                 {...field}
-                label="Tên gói"
+                label={
+                  <Typography
+                    sx={{
+                      fontSize: "24px",
+                      marginTop: "-8px",
+
+
+                    }}
+                  >
+                    Tên Gói
+                  </Typography>
+                }
                 error={meta.touched && !!meta.error}
                 helperText={meta.touched && meta.error ? meta.error : ""}
                 fullWidth
@@ -54,7 +65,7 @@ const UpdateForm = ({ initialValues, onSubmit }) => {
                   flexDirection: "column",
                 }}
               >
-                <label style={{ marginBottom: "8px" }}>Nội dung</label>
+                <label style={{ marginBottom: "8px", fontSize: "22px", }}>Nội dung</label>
                 <ReactQuill
                   theme="snow"
                   value={editorValue}
@@ -80,7 +91,17 @@ const UpdateForm = ({ initialValues, onSubmit }) => {
             {({ field, meta }) => (
               <TextField
                 {...field}
-                label="Giá gói"
+                label={
+                  <Typography
+                    sx={{
+                      fontSize: "24px",
+                      marginTop: "-8px",
+
+                    }}
+                  >
+                    Giá tiền (VND)
+                  </Typography>
+                }
                 type="number"
                 error={meta.touched && !!meta.error}
                 helperText={meta.touched && meta.error ? meta.error : ""}

@@ -234,6 +234,52 @@ const ListPackage = () => {
       <Grid container spacing={2}>
         {searchResults.length > 0
           ? searchResults.map((product, index) => (
+            <Grid item key={product.packageId} xs={12} sm={6} md={3}>
+              <Paper
+                elevation={3}
+                style={{ padding: 16, position: "relative" }}
+              >
+                <Chip
+                  label="Mới"
+                  color="secondary"
+                  style={{ position: "absolute", top: 8, left: 8 }}
+                />
+                <img
+                  src={product?.image}
+                  alt={product?.image}
+                  onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src =
+                      "https://img.lovepik.com/free-png/20220110/lovepik-error-icon-png-image_401369148_wh860.png";
+                  }}
+                  style={{
+                    width: "100%",
+                    height: 200,
+                    objectFit: "cover",
+                    cursor: "pointer",
+                  }}
+                />
+                <Typography
+                  variant="subtitle1"
+                  style={{
+                    marginTop: 8,
+                    fontWeight: "bold",
+                    color: "blue",
+                  }}
+                >
+                  {product.packageName}
+                </Typography>
+                <Typography variant="body2" style={{ color: "red" }}>
+                  Giá: {product.cost}
+                </Typography>
+                <Typography variant="body2" style={{ marginTop: 2, fontWeight: "bold" }} dangerouslySetInnerHTML={{ __html: product.description }}>
+                </Typography>
+              </Paper>
+            </Grid>
+          ))
+          : (sortedProducts.length > 0 ? sortedProducts : products)
+            .slice(0, visibleProducts)
+            .map((product, index) => (
               <Grid item key={product.packageId} xs={12} sm={6} md={3}>
                 <Paper
                   elevation={3}
@@ -245,8 +291,8 @@ const ListPackage = () => {
                     style={{ position: "absolute", top: 8, left: 8 }}
                   />
                   <img
-                    src={product?.image}
-                    alt={product?.image}
+                    src={product.image}
+                    alt={product.image}
                     onError={({ currentTarget }) => {
                       currentTarget.onerror = null;
                       currentTarget.src =
@@ -259,6 +305,7 @@ const ListPackage = () => {
                       cursor: "pointer",
                     }}
                   />
+
                   <Typography
                     variant="subtitle1"
                     style={{
@@ -269,92 +316,45 @@ const ListPackage = () => {
                   >
                     {product.packageName}
                   </Typography>
-                  <Typography variant="body2" style={{color: "red"}}>
-                    Giá: {product.cost}
+                  <Typography variant="body2" style={{ color: "red" }}>
+                    Giá (VND): {product.cost}
                   </Typography>
-                  <Typography variant="body2" style={{ marginTop: 2, fontWeight: "bold"}} dangerouslySetInnerHTML={{ __html: product.description }}>
-                  </Typography>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <Typography variant="body2" style={{ marginTop: 2, fontWeight: "bold" }} dangerouslySetInnerHTML={{ __html: product.description }}></Typography>
+                    <span style={{ cursor: "pointer" }}>
+                      <MoreVertIcon
+                        color="action"
+                        onClick={(event) =>
+                          handleMenuClick(event, product.packageId)
+                        }
+                      />
+                      {selectpackageId === product.packageId && (
+                        <Menu
+                          anchorEl={anchorEl}
+                          open={Boolean(anchorEl)}
+                          onClose={handleMenuClose}
+                        >
+                          <MenuItem
+                            onClick={() =>
+                              handleUpdatePackage(product.packageId)
+                            }
+                          >
+                            <EditIcon fontSize="small" sx={{ mr: 1 }} /> Cập
+                            nhật gói dịch vụ
+                          </MenuItem>
+                        </Menu>
+                      )}
+                    </span>
+                  </Box>
                 </Paper>
               </Grid>
-            ))
-          : (sortedProducts.length > 0 ? sortedProducts : products)
-              .slice(0, visibleProducts)
-              .map((product, index) => (
-                <Grid item key={product.packageId} xs={12} sm={6} md={3}>
-                  <Paper
-                    elevation={3}
-                    style={{ padding: 16, position: "relative" }}
-                  >
-                    <Chip
-                      label="Mới"
-                      color="secondary"
-                      style={{ position: "absolute", top: 8, left: 8 }}
-                    />
-                    <img
-                      src={product.image}
-                      alt={product.image}
-                      onError={({ currentTarget }) => {
-                        currentTarget.onerror = null;
-                        currentTarget.src =
-                          "https://img.lovepik.com/free-png/20220110/lovepik-error-icon-png-image_401369148_wh860.png";
-                      }}
-                      style={{
-                        width: "100%",
-                        height: 200,
-                        objectFit: "cover",
-                        cursor: "pointer",
-                      }}
-                    />
-
-                    <Typography
-                      variant="subtitle1"
-                      style={{
-                        marginTop: 8,
-                        fontWeight: "bold",
-                        color: "blue",
-                      }}
-                    >
-                      {product.packageName}
-                    </Typography>
-                    <Typography variant="body2" style={{color: "red"}}>
-                      Giá: {product.cost}
-                    </Typography>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-end",
-                      }}
-                    >
-                      <Typography variant="body2" style={{ marginTop: 2, fontWeight: "bold" }} dangerouslySetInnerHTML={{ __html: product.description }}></Typography>
-                      <span style={{ cursor: "pointer" }}>
-                        <MoreVertIcon
-                          color="action"
-                          onClick={(event) =>
-                            handleMenuClick(event, product.packageId)
-                          }
-                        />
-                        {selectpackageId === product.packageId && (
-                          <Menu
-                            anchorEl={anchorEl}
-                            open={Boolean(anchorEl)}
-                            onClose={handleMenuClose}
-                          >
-                            <MenuItem
-                              onClick={() =>
-                                handleUpdatePackage(product.packageId)
-                              }
-                            >
-                              <EditIcon fontSize="small" sx={{ mr: 1 }} /> Cập
-                              nhật gói dịch vụ
-                            </MenuItem>
-                          </Menu>
-                        )}
-                      </span>
-                    </Box>
-                  </Paper>
-                </Grid>
-              ))}
+            ))}
       </Grid>
       {!isSearching && visibleProducts < products?.length ? (
         <Box textAlign="center" marginTop={2}>
