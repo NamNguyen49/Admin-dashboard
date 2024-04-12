@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { TextField, Button, Box, Typography } from "@mui/material";
+import { TextField, Button, Box, Typography, Stack, Avatar } from "@mui/material";
 import * as Yup from "yup";
 import ReactQuill from "react-quill";
 
@@ -110,46 +110,36 @@ const UpdateForm = ({ initialValues, onSubmit }) => {
               />
             )}
           </Field>
-          <Field name="Image">
+          {imgSrc && <Avatar sx={{ width: '250px', height: '250px', mb: 5 }} alt='avatar' src={imgSrc} />}
+          <Field name='Image'>
             {({ field, form, meta }) => (
-              <>
-                <input
-                  multiple
-                  type="file"
-                  id="Image"
-                  onChange={(event) => {
-                    const reader = new FileReader();
-                    const files = event.currentTarget.files;
-                    if (files && files.length !== 0) {
-                      reader.onload = () => {
-                        setImgSrc(reader.result);
-                        form.setFieldValue(field.name, files[0]);
-                        setPrevImage(reader.result); // Lưu ảnh mới vào prevImage
-                      };
-                      reader.readAsDataURL(files[0]);
-                    }
-                  }}
-                  style={{ margin: "8px 0", marginBottom: "10px" }}
-                />
-                {meta.touched && meta.error && (
-                  <div style={{ color: "red", marginBottom: "10px" }}>
-                    {meta.error}
-                  </div>
-                )}
-                {(prevImage || initialValues.image) && ( // Sử dụng prevImage để hiển thị ảnh trước đó
-                  <Box style={{ marginTop: "8px", marginBottom: "10px" }}>
-                    <img
-                      style={{
-                        width: "10vw",
-                        height: "15vh",
-                        objectFit: "cover",
-                      }}
-                      src={prevImage}
-                      alt="Existing Package Image"
-                    />
-                  </Box>
-                )}
-              </>
+              <Stack direction={"row"}>
+                <Button
+                  component='label'
+                  style={{ backgroundColor: '#EC6935', color: 'black', marginLeft: '7px' }}
+                  variant='contained'
+                  htmlFor='Image'
+                  sx={{ ml: 7 }}
+                >
+                  Chọn hình
+                  <input
+                    hidden
+                    type='file'
+                    id='Image'
+                    accept='image/png, image/jpeg'
+                    onChange={(event) => {
+                      const reader = new FileReader()
+                      const files = event.currentTarget.files
+                      if (files && files.length !== 0) {
+                        reader.onload = () => setImgSrc(reader.result)
+                        reader.readAsDataURL(files[0])
+                      }
+                      form.setFieldValue(field.name, event.currentTarget.files[0])
+                    }}
+                  />
+                </Button>
+                {meta.touched && !!meta.error && <div style={{ color: 'red' }}>{meta.error}</div>}
+              </Stack>
             )}
           </Field>
           <Button
