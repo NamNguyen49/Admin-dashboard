@@ -165,7 +165,7 @@ const BanUser = () => {
   return (
     <Box m="20px">
       <Header
-        title="Bài viết"
+        title="Dữ liệu"
         subtitle="Quản lý danh sách người dùng bị báo cáo"
       />
       <Box

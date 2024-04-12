@@ -54,28 +54,28 @@ const Sidebar = () => {
           setSelected={setSelected}
         />
         <Item
-          title="Danh sách gói vip"
+          title="Danh sách gói hệ thống"
           to="/getPackage"
           icon={<RequestQuoteOutlinedIcon />}
           selected={selected}
           setSelected={setSelected}
         />
         <Item
-          title="Tạo gói vip"
+          title="Tạo gói dịch vụ"
           to="/addPackage"
           icon={<CreateNewFolderOutlinedIcon />}
           selected={selected}
           setSelected={setSelected}
         />
         <Item
-          title="Danh sách report"
+          title="Danh sách tố cáo bài viết"
           to="/getPost"
           icon={<ListAltOutlinedIcon />}
           selected={selected}
           setSelected={setSelected}
         />
         <Item
-          title="Danh sách ban user"
+          title="Danh sách tố cáo người dùng"
           to="/getBanUser"
           icon={<LockPersonOutlinedIcon />}
           selected={selected}

@@ -5,9 +5,11 @@ import {
   Divider,
   TextField,
   Typography,
+  Avatar,
+  Stack
 } from "@mui/material";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
@@ -24,6 +26,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const AddPackage = () => {
+  const [imgSrc, setImgSrc] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -74,7 +77,7 @@ const AddPackage = () => {
                     label={
                       <Typography
                         sx={{
-                          fontSize: "24px",
+                          fontSize: "22px",
                           marginTop: "-8px",
 
 
@@ -99,7 +102,7 @@ const AddPackage = () => {
                       flexDirection: "column",
                     }}
                   >
-                    <label style={{ marginBottom: "8px", fontSize: "24px", }}>Nội dung</label>
+                    <label style={{ marginBottom: "8px", fontSize: "22px", }}>Nội dung</label>
                     <ReactQuill
                       style={{ height: "150px", marginBottom: "16px" }}
                       theme="snow"
@@ -126,7 +129,7 @@ const AddPackage = () => {
                     label={
                       <Typography
                         sx={{
-                          fontSize: "24px",
+                          fontSize: "22px",
                           marginTop: "-8px",
 
                         }}
@@ -150,24 +153,36 @@ const AddPackage = () => {
                   mt: 3,
                 }}
               >
-                <label
-                  htmlFor="uploadFile"
-                  style={{ fontSize: "16px", mr: 2, margin: 5 }}
-                >
-                  Tải ảnh
-                </label>
-                <Field name="Image">
+                {imgSrc && <Avatar sx={{ width: '250px', height: '250px', mb: 5 }} alt='avatar' src={imgSrc} />}
+                <Field name='Image'>
                   {({ field, form, meta }) => (
-                    <>
-                      <input
-                        type="file"
-                        id="Image"
-                        onChange={(event) => {
-                          setFieldValue("Image", event.currentTarget.files[0]);
-                        }}
-                      />
-                      {meta.touched && meta.error && <div>{meta.error}</div>}
-                    </>
+                    <Stack direction={"row"}>
+                      <Button
+                        component='label'
+                        style={{ backgroundColor: 'white', color: 'black', marginLeft: '7px' }}
+                        variant='contained'
+                        htmlFor='Image'
+                        sx={{ ml: 7 }}
+                      >
+                        Chọn hình
+                        <input
+                          hidden
+                          type='file'
+                          id='Image'
+                          accept='image/png, image/jpeg'
+                          onChange={(event) => {
+                            const reader = new FileReader()
+                            const files = event.currentTarget.files
+                            if (files && files.length !== 0) {
+                              reader.onload = () => setImgSrc(reader.result)
+                              reader.readAsDataURL(files[0])
+                            }
+                            form.setFieldValue(field.name, event.currentTarget.files[0])
+                          }}
+                        />
+                      </Button>
+                      {meta.touched && !!meta.error && <div style={{ color: 'red' }}>{meta.error}</div>}
+                    </Stack>
                   )}
                 </Field>
 

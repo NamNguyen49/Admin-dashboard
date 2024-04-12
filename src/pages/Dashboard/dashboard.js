@@ -240,7 +240,7 @@ const Dashboard = () => {
             color="red"
             sx={{ marginBottom: "10px", fontWeight: "bold" }}
           >
-            đã mua vip trong 7 ngày vừa qua
+            Đã mua gói dịch vụ trong thời gian vừa qua
           </Typography>
         </Box>
         <Box
@@ -250,7 +250,7 @@ const Dashboard = () => {
           overflow="auto"
           sx={{ height: "65vh" }}
         >
-          <Box
+          {/* <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
@@ -261,9 +261,9 @@ const Dashboard = () => {
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               Top 10 sản phẩm bán chạy nhất trong 7 ngày qua
             </Typography>
-          </Box>
+          </Box> */}
           {/* {dashboardData?.FiveNewOrders && dashboardData?.FiveNewOrders.map((transaction, i) => ( */}
-          <Box
+          {/* <Box
             // key={`${transaction.ID}-${i}`}
             display="flex"
             justifyContent="space-between"
@@ -285,7 +285,7 @@ const Dashboard = () => {
             <Box backgroundColor={"#33CCFF"} p="5px 10px" borderRadius="4px">
               Giá
             </Box>
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>

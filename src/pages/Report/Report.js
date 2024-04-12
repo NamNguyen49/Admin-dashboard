@@ -170,7 +170,7 @@ const Report = () => {
 
   return (
     <Box m="20px">
-      <Header title="Bài viết" subtitle="Quản lý các bài viết bị báo cáo" />
+      <Header title="Dữ liệu" subtitle="Quản lý các bài viết bị báo cáo" />
       <Box
         m="40px 0 0 0"
         height="75vh"
