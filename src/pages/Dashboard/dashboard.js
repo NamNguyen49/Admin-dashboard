@@ -132,7 +132,7 @@ const Dashboard = () => {
         >
           <StatBox
             title={totalPost}
-            subtitle="Bài viết đã đăng trong 7 ngày qua"
+            subtitle="Bài viết đã đăng trong hệ thống"
             progress="0.50"
             increase="+21%"
             icon={
@@ -151,7 +151,7 @@ const Dashboard = () => {
         >
           <StatBox
             title={totalInvoice}
-            subtitle="Tổng số tiền đã thanh toán "
+            subtitle="Tổng số tiền đã thanh toán trong 7 ngày gần đây "
             progress="0.30"
             increase="+5%"
             icon={<PaidOutlinedIcon sx={{ color: "red", fontSize: "32px" }} />}
@@ -165,7 +165,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={12}
+            title={50}
             subtitle="Tổng số bình luận"
             progress="0.80"
             increase="+43%"
