@@ -151,7 +151,7 @@ const GetUser = () => {
           rows={rows}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
-          pageSize={20}
+          pageSize={10}
           pagination
         />
       </Box>
