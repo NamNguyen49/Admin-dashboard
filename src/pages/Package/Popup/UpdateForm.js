@@ -94,7 +94,7 @@ const UpdateForm = ({ initialValues, onSubmit }) => {
                 label={
                   <Typography
                     sx={{
-                      fontSize: "22px",
+                      fontSize: "20px",
                       marginTop: "-8px",
 
                     }}
