@@ -159,7 +159,7 @@ const AddPackage = () => {
                     <Stack direction={"row"}>
                       <Button
                         component='label'
-                        style={{ backgroundColor: '#EC6935', color: 'black', marginLeft: '7px' }}
+                        style={{ backgroundColor: '#58BDFF', color: 'black', marginLeft: '7px' }}
                         variant='contained'
                         htmlFor='Image'
                         sx={{ ml: 7 }}
