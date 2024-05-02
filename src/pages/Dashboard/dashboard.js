@@ -49,9 +49,10 @@ const Dashboard = () => {
   const chartRef = useRef(null);
   useEffect(() => {
     // if (totalOrderStatus && chartRef.current) {
-    const labels = ["Đã mua", "Đã từ chối", "Đang chờ xử lý", "Từ chối duyệt"];
-    const series = [25, 15, 10, 20];
-
+    // const labels = ["Đã mua", "Đã từ chối", "Đang chờ xử lý", "Từ chối duyệt"];
+    const labels = ["Đã đăng kí gói ", "Chưa đăng kí gói"];
+    // const series = [25, 15, 10, 20];
+    const series = [47, 53];
     const options = {
       series: series,
       chart: {
@@ -117,7 +118,7 @@ const Dashboard = () => {
             title={totalOrder}
             subtitle="Tổng người dùng hệ thống"
             progress="0.3"
-            increase="+25%"
+            // increase="+25%"
             icon={
               <PermIdentityIcon sx={{ color: "#3366CC", fontSize: "32px" }} />
             }
@@ -134,7 +135,7 @@ const Dashboard = () => {
             title={totalPost}
             subtitle="Bài viết đã đăng trong hệ thống"
             progress="0.50"
-            increase="+21%"
+            // increase="+21%"
             icon={
               <DescriptionOutlinedIcon
                 sx={{ color: "#3366CC", fontSize: "26px" }}
@@ -153,7 +154,7 @@ const Dashboard = () => {
             title={totalInvoice}
             subtitle="Tổng số tiền đã thanh toán trong 7 ngày gần đây "
             progress="0.30"
-            increase="+5%"
+            // increase="+5%"
             icon={<PaidOutlinedIcon sx={{ color: "red", fontSize: "32px" }} />}
           />
         </Box>
@@ -165,10 +166,10 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={50}
+            title={73}
             subtitle="Tổng số bình luận"
             progress="0.80"
-            increase="+43%"
+            // increase="+43%"
             icon={
               <SmsOutlinedIcon sx={{ color: "#009900", fontSize: "26px" }} />
             }
@@ -240,17 +241,27 @@ const Dashboard = () => {
             color="red"
             sx={{ marginBottom: "10px", fontWeight: "bold" }}
           >
-            Đã mua gói dịch vụ trong thời gian vừa qua
+            Số lượng người dùng sử dụng dịch vụ hệ thống
           </Typography>
         </Box>
-        <Box
+        {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
           sx={{ height: "65vh" }}
         >
-          {/* <Box
+          
+        </Box> */}
+      </Box>
+    </Box>
+  );
+};
+
+export default Dashboard;
+
+
+{/* <Box
             display="flex"
             justifyContent="space-between"
             alignItems="center"
@@ -262,8 +273,8 @@ const Dashboard = () => {
               Top 10 sản phẩm bán chạy nhất trong 7 ngày qua
             </Typography>
           </Box> */}
-          {/* {dashboardData?.FiveNewOrders && dashboardData?.FiveNewOrders.map((transaction, i) => ( */}
-          {/* <Box
+{/* {dashboardData?.FiveNewOrders && dashboardData?.FiveNewOrders.map((transaction, i) => ( */ }
+{/* <Box
             // key={`${transaction.ID}-${i}`}
             display="flex"
             justifyContent="space-between"
@@ -286,10 +297,3 @@ const Dashboard = () => {
               Giá
             </Box>
           </Box> */}
-        </Box>
-      </Box>
-    </Box>
-  );
-};
-
-export default Dashboard;

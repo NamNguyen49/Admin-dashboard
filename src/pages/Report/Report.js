@@ -53,7 +53,7 @@ const Report = () => {
   const getStatusText = (status) => {
     switch (status) {
       case "InActive":
-        return "Bài viết đã được gỡ";
+        return "Report đã được chấp nhận";
       case "Watting":
         return "Đang chờ xử lý";
       case "Reject":
