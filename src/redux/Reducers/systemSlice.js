@@ -3,6 +3,7 @@ import {
   getAllBanUserAdmin,
   getAllPackage,
   getAllPostAdmin,
+  getAllTotalComment,
   getAllTotalPost,
   getAllTotalUser,
   getAllUser,
@@ -94,6 +95,19 @@ const systemSlice = createSlice({
       state.getTotalUser = action.payload;
     },
     [getAllTotalPost.rejected]: (state, action) => {
+      state.loading = false;
+      state.loading = "failed";
+    },
+    [getAllTotalComment.pending]: (state, action) => {
+      state.loading = true;
+      state.loading = "loading";
+    },
+    [getAllTotalComment.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.loading = "succeeded";
+      state.getTotalUser = action.payload;
+    },
+    [getAllTotalComment.rejected]: (state, action) => {
       state.loading = false;
       state.loading = "failed";
     },

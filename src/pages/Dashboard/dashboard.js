@@ -10,11 +10,14 @@ import StatBox from "../../../src/components/StatBox";
 import { tokens } from "../../../src/theme";
 import { useDispatch, useSelector } from "react-redux";
 import ApexCharts from "apexcharts";
+import api from "../../api/api";
 import {
+  getAllTotalComment,
   getAllTotalInvoice,
   getAllTotalPost,
   getAllTotalUser,
 } from "../../redux/apiThunk/system";
+import { Api } from "@mui/icons-material";
 function formatCurrency(value) {
   return new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -27,6 +30,8 @@ const Dashboard = () => {
   const [totalInvoice, setTotalInvoice] = useState(null);
   const [totalOrderStatus, setTotalOrderStatus] = useState(null);
   const [totalOrder, setTotalOrder] = useState(null);
+  const [totalComment, setTotalComment] = useState(null);
+  const [dataChart, setDataChart] = useState([0, 0, 0]);
   useEffect(() => {
     const fetchSequentially = async () => {
       try {
@@ -38,6 +43,13 @@ const Dashboard = () => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const invoiceResult = await dispatch(getAllTotalInvoice());
         setTotalInvoice(invoiceResult?.payload?.total);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const commentResult = await dispatch(getAllTotalComment());
+        console.log({ commentResult });
+        setTotalComment(commentResult?.payload);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        const response = await api.get("/odata/Users/GetStaticUser/User")
+        setDataChart([response?.data?.data?.userNormal, response?.data?.data?.userVIP, response?.data?.data?.userPremium])
       } catch (error) {
         console.error("Error fetching data sequentially:", error);
       }
@@ -48,11 +60,10 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
   const chartRef = useRef(null);
   useEffect(() => {
-    // if (totalOrderStatus && chartRef.current) {
-    // const labels = ["Đã mua", "Đã từ chối", "Đang chờ xử lý", "Từ chối duyệt"];
-    const labels = ["Đã đăng kí gói ", "Chưa đăng kí gói"];
+
+    const labels = ["Người dùng chưa đăng kí gói ", "Đăng ký gói VIP", "Đăng ký gói PREMIUM"];
     // const series = [25, 15, 10, 20];
-    const series = [47, 53];
+    const series = dataChart;
     const options = {
       series: series,
       chart: {
@@ -86,13 +97,13 @@ const Dashboard = () => {
 
     // Render the chart
     chart.render();
-
     // Destroy the chart when the component is unmounted
     return () => {
       chart.destroy();
     };
-    // }
-  }, [totalOrderStatus, chartRef]);
+
+
+  }, [totalOrderStatus, chartRef, dataChart]);
 
   return (
     <Box m="20px" sx={{ height: "95vh" }}>
@@ -166,7 +177,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={73}
+            title={totalComment}
             subtitle="Tổng số bình luận"
             progress="0.80"
             // increase="+43%"

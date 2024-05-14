@@ -35,6 +35,10 @@ export const getTotalInvoice = async () => {
   const response = await api.get(`/odata/Invoices/GetAggregateinvoices`);
   return response.data;
 };
+export const getTotalComment = async () => {
+  const response = await api.get(`/odata/GetAllComment`);
+  return response.data;
+};
 export const openBanUser = async (key) => {
   const response = await api.put(`odata/Users/${key}/OpenBanUserByAccountId`);
   return response.data;

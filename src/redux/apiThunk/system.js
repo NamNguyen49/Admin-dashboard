@@ -12,6 +12,7 @@ import {
   updateBanUser,
   updatePackage,
   updatePost,
+  getTotalComment,
 } from "../../api/admin";
 export const getAllUser = createAsyncThunk(
   "system/getAllUser",
@@ -84,6 +85,18 @@ export const getAllTotalPost = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const response = await getTotalPost();
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+export const getAllTotalComment = createAsyncThunk(
+  "system/getAllTotalComment",
+  async (thunkAPI) => {
+    try {
+      const response = await getTotalComment();
+      console.log({response})
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
