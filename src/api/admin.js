@@ -36,7 +36,7 @@ export const getTotalInvoice = async () => {
   return response.data;
 };
 export const getTotalComment = async () => {
-  const response = await api.get(`/odata/GetAllComment`);
+  const response = await api.get(`/odata/GetMostCommonCommentStyle`);
   return response.data;
 };
 export const openBanUser = async (key) => {

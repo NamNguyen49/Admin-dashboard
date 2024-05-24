@@ -1,5 +1,6 @@
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
+import { orange } from "@mui/material/colors";
 
 // color design tokens export
 export const tokens = (mode) => ({
@@ -60,6 +61,28 @@ export const tokens = (mode) => ({
         800: "#2a2d64",
         900: "#151632",
       },
+      orange:{
+        100: "#FFE0B2",
+        200: "#FFCC80",
+        300: "#FFB74D",
+        400: "#FFA726",
+        500: "#FF9800",
+        600: "#FB8C00",
+        700: "#F57C00",
+        800: "#EF6C00",
+        900: "#E65100",
+      },
+      yellow:{
+        100: "#FFF9C4",
+        200: "#FFF59D",
+        300: "#FFF176",
+        400: "#FFEE58",
+        500: "#FFEB3B",
+        600: "#FDD835",
+        700: "#FBC02D",
+        800: "#F9A825",
+         900: "#F57F17",
+      },
     }
     : {
       grey: {
@@ -116,6 +139,28 @@ export const tokens = (mode) => ({
         700: "#a4a9fc",
         800: "#c3c6fd",
         900: "#e1e2fe",
+      },
+      orange:{
+        100: "#FFE0B2",
+        200: "#FFCC80",
+        300: "#FFB74D",
+        400: "#FFA726",
+        500: "#FF9800",
+        600: "#FB8C00",
+        700: "#F57C00",
+        800: "#EF6C00",
+        900: "#E65100",
+      },
+      yellow:{
+        100: "#FFF9C4",
+        200: "#FFF59D",
+        300: "#FFF176",
+        400: "#FFEE58",
+        500: "#FFEB3B",
+        600: "#FDD835",
+        700: "#FBC02D",
+        800: "#F9A825",
+         900: "#F57F17",
       },
     }),
 });
