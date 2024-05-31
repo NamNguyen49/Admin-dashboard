@@ -31,7 +31,7 @@ const Dashboard = () => {
   const [totalOrderStatus, setTotalOrderStatus] = useState(null);
   const [totalOrder, setTotalOrder] = useState(null);
   const [totalComment, setTotalComment] = useState(null);
-  const [dataChart, setDataChart] = useState([0,0,0]);
+  const [dataChart, setDataChart] = useState([0, 0, 0]);
   const [dataPost, setDataPost] = useState([]);
   useEffect(() => {
     const fetchSequentially = async () => {
@@ -46,11 +46,11 @@ const Dashboard = () => {
         setTotalInvoice(invoiceResult?.payload?.total);
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const commentResult = await dispatch(getAllTotalComment());
-        console.log({commentResult})
+        console.log({ commentResult })
         setTotalComment(commentResult?.payload);
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const response = await api.get("/odata/Users/GetStaticUser/User")
-        setDataChart([response?.data?.data?.userNormal,response?.data?.data?.userVIP,response?.data?.data?.userPremium])
+        setDataChart([response?.data?.data?.userNormal, response?.data?.data?.userVIP, response?.data?.data?.userPremium])
         await new Promise((resolve) => setTimeout(resolve, 1000));
         const responsePost = await api.get("/odata/Posts/Active/TopLikePost")
         setDataPost(responsePost?.data || [])
@@ -65,7 +65,7 @@ const Dashboard = () => {
   const colors = tokens(theme.palette.mode);
   const chartRef = useRef(null);
   useEffect(() => {
-    
+
     const labels = ["Người dùng chưa đăng kí gói ", "Đăng ký gói VIP", "Đăng ký gói PREMIUM"];
     // const series = [25, 15, 10, 20];
     const series = dataChart;
@@ -106,9 +106,9 @@ const Dashboard = () => {
     return () => {
       chart.destroy();
     };
-    
-    
-  }, [totalOrderStatus, chartRef,dataChart]);
+
+
+  }, [totalOrderStatus, chartRef, dataChart]);
 
   return (
     <Box m="20px" sx={{ height: "95vh" }}>
@@ -182,7 +182,7 @@ const Dashboard = () => {
           justifyContent="center"
         >
           <StatBox
-            title={totalComment? totalComment?.commentCount:""}
+            title={totalComment ? totalComment?.commentCount : ""}
             subtitle={"Phong cách được bình luận nhiều nhất" + "  " + totalComment?.styleName}
             progress="0.80"
             // increase="+43%"
@@ -215,14 +215,14 @@ const Dashboard = () => {
           </Typography>
         </Box>
 
-       <Box
+        <Box
           gridColumn="span 4"
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
           sx={{ height: "65vh" }}
         >
-          
+
           <Box
             display="flex"
             justifyContent="space-between"
@@ -243,23 +243,28 @@ const Dashboard = () => {
               borderBottom={`4px solid ${colors.primary[500]}`}
               p="15px"
             >
-              <Box sx={{display:"flex", alignItems:"flex-start"}}>
-                <div style={{marginRight:"10px"}}>
-                  <img src={data?.image} style={{width:"100px",height:"100px"}}/>
+              <Box sx={{ display: "flex", alignItems: "flex-start" }}>
+                <div style={{ marginRight: "10px" }}>
+                  <img src={data?.image} style={{ width: "100px", height: "100px" }} />
                 </div>
                 <div>
-                <Typography color={"#32CD32"} variant="h6" fontWeight="600">
-                  {data?.content}
-                </Typography>
-                <Typography color={"red"} fontWeight="400">
-                  Like: {data?.likes?.length}
-                </Typography>
+                  <Typography color={"#32CD32"} variant="h6" fontWeight="600">
+                    {data?.content}
+                  </Typography>
+                  <Typography color={"red"} fontWeight="400">
+                    Like: {data?.likes?.length}
+                  </Typography>
 
-                <Typography color={"#FF69B4"}>
-                  Hashtags: {data?.hashtags?.map((label)=>(
-                    <Chip label={label} color="warning"/>
-                  ))}
-                </Typography>
+                  <Typography color={"#FF69B4"}>
+                    Hashtags: {data?.hashtags?.map((label) => (
+                      <Chip label={label} color="warning" />
+                    ))}
+                  </Typography>
+                  <Typography color={"#000000"} marginTop={1}>
+                    StyleName: {data?.styleName?.map((label1) => (
+                      <Chip label={label1} color="info" />
+                    ))}
+                  </Typography>
                 </div>
               </Box>
 
@@ -269,7 +274,7 @@ const Dashboard = () => {
             </Box>
           ))}
         </Box>
-        
+
         {/* <Box
           gridColumn="span 4"
           gridRow="span 2"
